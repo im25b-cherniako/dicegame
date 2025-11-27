@@ -24,7 +24,7 @@ def main():
     """
     inputs()
     decision()
-    
+    pass
 
 def decision():
     """
