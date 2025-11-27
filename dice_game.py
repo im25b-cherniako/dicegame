@@ -3,12 +3,6 @@ import random
 """
 Main function
 """
-def main():
-    """
-    Main func
-    :return: None
-    """
-    pass
 
 def inputs():
     """
@@ -20,4 +14,15 @@ def inputs():
         if 4 >= player_number >= 1:
             return player_number
         else:
+            print('Gib die Anzahl zwischen 1 und 4 an!')
             continue
+
+def main():
+    """
+    Main func
+    :return: None
+    """
+    inputs()
+    pass
+
+main()
