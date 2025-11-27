@@ -1,7 +1,7 @@
 import random
 
 """
-Main fettsack
+Main function
 """
 def main():
     """
