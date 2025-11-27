@@ -8,7 +8,9 @@ def main():
     Main func
     :return: None
     """
-    pass
+    inputs()
+    decision()
+
 
 def inputs():
     """
@@ -23,19 +25,13 @@ def inputs():
             print('Gib die Anzahl zwischen 1 und 4 an!')
             continue
 
-def main():
-    """
-    Main func
-    :return: None
-    """
-    inputs()
-    decision()
-    pass
+def dice():
+    dice_value = random.randrange(1,8)
+    return dice_value
 
 def decision():
     """
     Asks the user if he wants to continue playing
-    :param decision_answer:
     :return:
     """
     decision_answer = input('Wollen Sie weiterspielen? (JA/NEIN) \n')
