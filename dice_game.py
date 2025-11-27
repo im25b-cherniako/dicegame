@@ -3,12 +3,6 @@ import random
 """
 Main function
 """
-def main():
-    """
-    Main func
-    :return: None
-    """
-    pass
 
 def inputs():
     """
@@ -20,4 +14,28 @@ def inputs():
         if 4 >= player_number >= 1:
             return player_number
         else:
+            print('Gib die Anzahl zwischen 1 und 4 an!')
             continue
+
+def main():
+    """
+    Main func
+    :return: None
+    """
+    inputs()
+    decision()
+    
+
+def decision():
+    """
+    Asks the user if he wants to continue playing
+    :param decision_answer:
+    :return:
+    """
+    decision_answer = input('Wollen Sie weiterspielen? (JA/NEIN) \n')
+    if decision_answer == 'JA':
+        return True
+    else:
+        return False
+
+main()
