@@ -3,6 +3,12 @@ import random
 """
 Main function
 """
+def main():
+    """
+    Main func
+    :return: None
+    """
+    pass
 
 def inputs():
     """
