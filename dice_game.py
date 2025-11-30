@@ -13,9 +13,9 @@ def main():
 
 def rules():
     print(
-        '********************************************************************************************\n'
+        '\n********************************************************************************************\n'
         'In diesem Spiel versucht jeder Spieler, so nah wie möglich an 21 Punkte zu kommen.\n'
-        'Das Spiel ähnelt Blackjack, wird aber mit einem Würfel gespielt, der Zahlen von 1 bis 7 erzeugen kann.\n\n'
+        'Das Spiel ähnelt Blackjack, wird aber mit einem Würfel gespielt, der Zahlen von 1 bis 8 erzeugen kann.\n\n'
         
         '-----------------------------\n'
         '     SPIELABLAUF\n'
@@ -23,7 +23,7 @@ def rules():
         '• Jeder Spieler startet eine Runde mit 0 Punkten.\n'
         '• Die Spieler sind der Reihe nach an der Reihe.\n'
         '• Wenn du an der Reihe bist, wirst du gefragt, ob du weiter würfeln möchtest.\n'
-        '    - Antwortest du mit JA, wird eine Zahl zwischen 1 und 7 gewürfelt und zu deinem Punktestand addiert.\n'
+        '    - Antwortest du mit JA, wird eine Zahl zwischen 1 und 8 gewürfelt und zu deinem Punktestand addiert.\n'
         '    - Antwortest du mit NEIN, wird dein aktueller Punktestand gespeichert und du nimmst an dieser Runde nicht weiter teil.\n\n'
         
         'Die Runde endet, wenn alle Spieler entweder ausgestiegen sind oder über 21 Punkte gekommen sind.\n\n'
@@ -38,7 +38,7 @@ def rules():
         
         'Der Gewinner der Runde erhält 1 Punkt.\n'
         'Sobald ein Spieler 3 Punkte erreicht hat, gewinnt er das gesamte Spiel.\n'
-        '********************************************************************************************'
+        '********************************************************************************************\n'
     )
 
 
@@ -48,10 +48,10 @@ def welcome():
     """
     print('Willkommen zu unserem Würfelspiel, aka Blackjack!')
     explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
-    while explaination not in ('JA', 'NEIN', 'ja', 'nein'):
+    while explaination not in ('JA', 'NEIN', 'ja', 'nein'): #Wenn die Eingabe nicht den folgenden entspricht:
         print('Ungültige Eingabe!')
         explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
-    if explaination == 'JA' or explaination == 'ja': #Da kommt noch die  Funktion die die Regeln erklärt
+    if explaination == 'JA' or explaination == 'ja':
         rules()
     else:
         print('****************************************************************************')
@@ -69,6 +69,8 @@ def inputs():
         else:
             print('Geben Sie die Anzahl zwischen 1 und 4 an!')
             continue
+
+
 welcome()
 players_number = inputs() # Speichert da die Spieleranzahl, weil in mehreren Funktionen verwendet wird
 
@@ -77,7 +79,7 @@ def dice():
     Function to dice, generates a random integer from 1 to 8
     :return: int: dice number
     """
-    dice_value = random.randrange(1,8)
+    dice_value = random.randrange(1,9)
     return dice_value
 
 def game_round():
