@@ -11,7 +11,11 @@ def main():
     """
     print(game())
 
-def rules():
+def explanation():
+    """
+    Prints out the explanation if player chooses 'JA' or 'ja'
+    :return:
+    """
     print(
         '\n********************************************************************************************\n'
         'In diesem Spiel versucht jeder Spieler, so nah wie möglich an 21 Punkte zu kommen.\n'
@@ -44,15 +48,16 @@ def rules():
 
 def welcome():
     """
+    Asks the player if they want an explanation of the game
     :return:
     """
     print('Willkommen zu unserem Würfelspiel, aka Blackjack!')
-    explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
-    while explaination not in ('JA', 'NEIN', 'ja', 'nein'): #Wenn die Eingabe nicht den folgenden entspricht:
+    want_explanation = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
+    while want_explanation not in ('JA', 'NEIN', 'ja', 'nein'): #Wenn die Eingabe nicht den hinteren entspricht:
         print('Ungültige Eingabe!')
-        explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
-    if explaination == 'JA' or explaination == 'ja':
-        rules()
+        want_explanation = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
+    if want_explanation == 'JA' or want_explanation == 'ja':
+        explanation()
     else:
         print('****************************************************************************')
 
