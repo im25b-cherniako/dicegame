@@ -50,8 +50,8 @@ def welcome():
     explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
     while explaination not in ('JA', 'NEIN', 'ja', 'nein'):
         print('Ungültige Eingabe!')
-        explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (y/n) > ')
-    if explaination == 'JA': #Da kommt noch die  Funktion die die Regeln erklärt
+        explaination = input('Möchten Sie eine kurze Erklärung, wie Blackjack funktioniert? (JA/NEIN) > ')
+    if explaination == 'JA' or explaination == 'ja': #Da kommt noch die  Funktion die die Regeln erklärt
         rules()
     else:
         print('****************************************************************************')
