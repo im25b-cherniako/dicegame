@@ -9,7 +9,7 @@ def main():
     Main func
     :return: None
     """
-    print(game())
+    game()
 
 def explanation():
     """
@@ -104,13 +104,16 @@ def game_round():
         playing.append(True)
 
     while not all(element > 21 for element in player_scores):
+        if not any(playing):
+            return player_scores
+
         for i in range(len(player_scores)):
             if playing[i]:
                 player_decision = decision(i + 1)
                 if player_decision:
                     dice_score = dice()
                     player_scores[i] += dice_score
-                    print(f'Spieler {i + 1} hat {player_scores[i]} Punkte!')
+                    print(f'Spieler {i + 1} hat {dice_score} Punkte geworfen!')
                     if player_scores[i] == 21:
                         return player_scores
                     if player_scores[i] > 21:
@@ -118,15 +121,12 @@ def game_round():
                 else:
                     playing[i] = False
                     print(f'Spieler {i + 1} hat entschieden, das Spiel aufzuhören')
-            if not all(element for element in playing):
-                return player_scores
-
     return player_scores
 
 def game():
     """
     Function that summarises player scores and returning a winner name if his points equal 3
-    :return: str: player x won
+    :return: int: Number(not index) of winner
     """
     player_points = []
     for i in range(players_number):
@@ -138,19 +138,17 @@ def game():
         player_winning = -1
 
         for i in range(len(scores)):
-            if scores[i] <= 21:
-                if 21 - scores[i] < lowest_difference:
-                    lowest_difference = 21 - scores[i]
-                    player_winning = i
-            else:
-                if scores[i] - 21 < lowest_difference:
-                    lowest_difference = scores[i] - 21
-                    player_winning = i
+            if 21 - scores[i] < lowest_difference:
+                lowest_difference = 21 - scores[i]
+                player_winning = i
+
         player_points[player_winning] += 1
         print(f'Spieler {player_winning + 1} hat {player_points[player_winning]} Punkten!')
         print(f'Die Spielergebnisse sehen so aus: {player_points}')
 
-    return f'Spieler {player_points.index(max(player_points)) + 1} hat gewonnen! '
+    winner = player_points.index(max(player_points)) + 1
+    print(f'Spieler {winner} hat gewonnen! ')
+    return winner
 
 
 
@@ -163,7 +161,7 @@ def decision(player):
         decision_answer = input(f'Spieler {player} wollen Sie weiterspielen? (JA/NEIN) \n')
         decision_answer = decision_answer.lower()
 
-        if decision_answer == 'ja':
+        if decision_answer == 'ja' or decision_answer == '1':
             return True
         elif decision_answer == 'nein':
             return False
