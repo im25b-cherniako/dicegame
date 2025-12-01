@@ -68,12 +68,15 @@ def inputs():
     :return: number of players
     """
     while True:
-        player_number = int(input('Geben Sie Anzahl Spieler ein (1-4) > '))
-        if 4 >= player_number >= 1:
-            return player_number
-        else:
-            print('Geben Sie die Anzahl zwischen 1 und 4 an!')
-            continue
+        try:
+            player_number = int(input('Geben Sie Anzahl Spieler ein (1-4) > '))
+            if 4 >= int(player_number) >= 1:
+                return int(player_number)
+            else:
+                print('Geben Sie die Anzahl zwischen 1 und 4 an!')
+                continue
+        except ValueError:
+            print('Geben sie die Anzahl zwischen 1 und 4 an!')
 
 
 welcome()
@@ -93,27 +96,32 @@ def game_round():
     :return: str: list of all players SCORE
     """
     player_scores = [] # Am Anfang immer so viele Nullen, wie es Spieler gibt
-    end_scores = [] # Falls einer der Spieler aufhört zu spielen, speichert es seinen letzten Wert
+    playing = []
+
     for i in range(players_number):
         player_scores.append(0)
+    for i in range(players_number):
+        playing.append(True)
 
     while not all(element > 21 for element in player_scores):
         for i in range(len(player_scores)):
-            player_decision = decision(i + 1)
-            if player_decision:
-                dice_score = dice()
-                player_scores[i] += dice_score
-                print(f'Spieler {i + 1} hat {player_scores[i]} Punkte!')
-                print(f'Die Ergebnisse sehen so aus: {player_scores}')
-                if player_scores[i] == 21:
-                    return player_scores + end_scores
-            else:
-                print(f'Spieler {i + 1} hat entschieden, das Spiel aufzuhören')
-                end_scores.append(player_scores[i])
-                player_scores.remove(player_scores[i])
-                break  #
-        continue       # Weil aus player_scores ein Element gelöscht wurde, muss die Iteration erneut gestartet werden
-    return player_scores + end_scores
+            if playing[i]:
+                player_decision = decision(i + 1)
+                if player_decision:
+                    dice_score = dice()
+                    player_scores[i] += dice_score
+                    print(f'Spieler {i + 1} hat {player_scores[i]} Punkte!')
+                    if player_scores[i] == 21:
+                        return player_scores
+                    if player_scores[i] > 21:
+                        playing[i] = False
+                else:
+                    playing[i] = False
+                    print(f'Spieler {i + 1} hat entschieden, das Spiel aufzuhören')
+            if not all(element for element in playing):
+                return player_scores
+
+    return player_scores
 
 def game():
     """
